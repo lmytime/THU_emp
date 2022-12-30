@@ -3,7 +3,7 @@
   % thuemp.cls
   % thuemp: Experiments of Modern Physics in Tsinghua University
 
-  % version 1.0  (2021年3月)
+  % version 1.1  (2022年12月)
 
   % 清华大学近代物理实验实验报告LaTeX模板（非官方）
   % LaTeX Template (unofficial) for Experiments in Modern Physics of Tsinghua University
@@ -11,6 +11,7 @@
   % by Mingyu Li
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+  % Version 1.1 [2022.12.30]: add English header part, including title, authors, address, abstract and keyword in English
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   % 1) 参考了《控制理论与应用》提供的LATEX模板  http://jcta.alljournals.ac.cn/uploadfile/cta_cn/20170419/kzllyy%20template20170419-2.9.zip
@@ -67,15 +68,6 @@ The LaTeX template for Experiment Report in Modern Physics of Tsinghua Universit
 
 \setmainfont{Times New Roman}
 
-\usepackage{xeCJK}
-\setCJKfamilyfont{hei}{SimHei}
-\setCJKfamilyfont{kai}{KaiTi}
-\newcommand{\hei}{\CJKfamily{hei}}
-\newcommand{\kai}{\CJKfamily{kai}}
-
-\newfontfamily\CalibriFont{Calibri}
-\newfontfamily\TimesNMFont{Times New Roman}
-
 \newcommand{\erhao}{\fontsize{22pt}{\baselineskip}\selectfont}      % 字号设置
 \newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}      % 字号设置
 \newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}  % 字号设置
@@ -110,14 +102,13 @@ The LaTeX template for Experiment Report in Modern Physics of Tsinghua Universit
 \renewcommand\subsection{\@startsection {subsection}{1}{\z@}%
                                    {-1pt }%
                                    {1pt}%
-                                   {\normalfont\bfseries\hei\wuhao}}
+                                   {\normalfont\bfseries\heiti\wuhao}}
 \renewcommand\subsubsection{\@startsection {subsubsection}{1}{\z@}%
                                    {-1pt }%
                                    {1pt}%
                                    {\normalfont\wuhao}}
-\renewcommand{\CJKglue}{\hskip -0.4pt plus 5.5\baselineskip}
- 
- 
+
+
 
 \usepackage{geometry}
 \newgeometry{
@@ -144,12 +135,28 @@ The LaTeX template for Experiment Report in Modern Physics of Tsinghua Universit
 \wuhao\setlength{\parindent}{2em}
 \newlength{\somelength}
 
-{\hei\wuhao \makebox[\widthof{【关键词】}][s]{【摘 要】}}
+{\heiti\wuhao \makebox[\widthof{【关键词】}][s]{【摘 要】}}
 {\xiaowuhao 
 \BODY
 }
 
-{\hei\wuhao \makebox[\widthof{【关键词】}][s]{【关键词】}} \hei \wuhao \empKeyword
+{\heiti\wuhao \makebox[\widthof{【关键词】}][s]{【关键词】}} \heiti \wuhao \empKeyword
+
+\vspace*{1.3cm}}
+\end{center}
+}
+
+\NewEnviron{empAbstractEn}{
+\begin{center}
+\parbox{\textwidth}{
+\wuhao\setlength{\parindent}{2em}
+
+\textbf{\wuhao Abstract:}
+{\xiaowuhao 
+\BODY
+}
+
+\textbf{\wuhao Key Words:} \textbf{ \wuhao \empKeywordEn}
 
 \vspace*{1.3cm}}
 \end{center}
@@ -158,6 +165,11 @@ The LaTeX template for Experiment Report in Modern Physics of Tsinghua Universit
 \def\empKeyword{}
 \newcommand{\Keyword}[1]{
     \def\empKeyword{#1}
+}
+
+\def\empKeywordEn{}
+\newcommand{\KeywordEn}[1]{
+    \def\empKeywordEn{#1}
 }
 
 
@@ -171,9 +183,29 @@ The LaTeX template for Experiment Report in Modern Physics of Tsinghua Universit
 %%作者
 \newcommand\empauthor[2]{
 \author{
-\sihao\kai #1\makebox{$^{\text{*}}$} ， #2\makebox{{$^\dagger$}} \\[0.1cm]
-\liuhao \kai ~~清华大学~~物理系，北京~~100084\ 
+\sihao\kaishu #1\makebox{$^{\text{*}}$} ， #2\makebox{{$^\dagger$}} \\[0.1cm]
+\liuhao \kaishu ~~清华大学~~物理系，北京~~100084\ 
 }
+}
+
+%%英文题目
+\newcommand\emptitleEn[1]{
+\begin{center}
+{
+\vspace{0.5cm} \sihao #1 \vspace{-0.2cm}
+}
+\end{center}
+}
+
+%%英文作者
+\newcommand\empauthorEn[2]{
+\begin{center}
+{
+\centering
+\textbf{\wuhao #1 ， #2} \\
+\liuhao Department of Physics, Tsinghua University, Beijing 100084, China\ 
+}
+\end{center}
 }
 
 \date{}
@@ -184,11 +216,11 @@ The LaTeX template for Experiment Report in Modern Physics of Tsinghua Universit
 \noindent\rule{4cm}{.5pt}\\[0.5ex]%
 \hspace*{1em} \liuhao \linespread{0.8}\selectfont
 \parbox{\textwidth}{
-\hei\makebox[\widthof{\makebox{*}实}][r]{实}验时间: #1\\
-\hei\makebox[\widthof{\makebox{*}实}][r]{报}告时间: #2\\
-\hei\makebox[\widthof{\makebox{*}实}][r]{$\dagger$指}导教师\\
-\hei\makebox[\widthof{\makebox{*}实}][r]{\makebox{*}学}号：#3 \\
-\hei\makebox[\widthof{\makebox{*}实}][r]{\makebox{*}E-}mail：#4 \\
+\heiti\makebox[\widthof{\makebox{*}实}][r]{实}验时间: #1\\
+\heiti\makebox[\widthof{\makebox{*}实}][r]{报}告时间: #2\\
+\heiti\makebox[\widthof{\makebox{*}实}][r]{$\dagger$指}导教师\\
+\heiti\makebox[\widthof{\makebox{*}实}][r]{\makebox{*}学}号：#3 \\
+\heiti\makebox[\widthof{\makebox{*}实}][r]{\makebox{*}E-}mail：#4 \\
 }}
 }
 
@@ -197,7 +229,7 @@ The LaTeX template for Experiment Report in Modern Physics of Tsinghua Universit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fancypagestyle{plain}{ \fancyhf{}\vspace{10pt}
 \lhead{}
-\chead{\vspace{0.6cm}\centering{{\CJKfamily{hei}\xiaowuhao 清\ 华\ 大\ 学\ 近\ 代\ 物\ 理\ 实\ 验}\\[-0.5ex]
+\chead{\vspace{0.6cm}\centering{{\heiti\xiaowuhao 清\ 华\ 大\ 学\ 近\ 代\ 物\ 理\ 实\ 验}\\[-0.5ex]
 {{\xiaowuhao Experiments in Modern Physics, Tsinghua University}}}}
 \rhead{}
 \lfoot{}
