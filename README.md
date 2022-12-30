@@ -1,4 +1,6 @@
 # THU_emp
+<img src="TempExample.jpg" alt="TempExample" style="zoom:80%;" />
+
 清华大学近代物理实验报告LaTeX模板（非官方）
 
 A Latex template for experiments in modern physics of Tsinghua University.
